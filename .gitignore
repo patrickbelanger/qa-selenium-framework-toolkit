@@ -25,3 +25,9 @@ hs_err_pid*
 /.settings/
 /.project
 /.classpath
+/demo/.settings/
+/demo/.project
+/demo/.classpath
+/toolkit/.settings/
+/toolkit/.project
+/toolkit/.classpath
