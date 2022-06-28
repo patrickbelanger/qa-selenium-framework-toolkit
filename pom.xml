@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>qa.free.tools</groupId>
-	<artifactId>selenium-framework-toolkit</artifactId>
+	<artifactId>qa-selenium-framework</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -48,45 +49,18 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<developers>
-	    <developer>
-	      <name>Patrick Belanger</name>
-	      <roles>
-	        <role>Owner</role>
-	      </roles>
-	    </developer>
-    </developers>
-    
-    <properties>
+
+	<properties>
 		<jacoco.version>0.8.8</jacoco.version>
-		<junit.version>5.8.2</junit.version>
-		<logback.core.version>1.2.11</logback.core.version>
-		<lombok.version>1.18.22</lombok.version>
-		<owner.version>1.0.12</owner.version>
-		<qa.free.tools>0.0.1-SNAPSHOT</qa.free.tools>
-		<slf4j.version>1.7.25</slf4j.version>
 		<testng.version>7.6.0</testng.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<qa.free.tools.version>0.0.1-SNAPSHOT</qa.free.tools.version>
 	</properties>
-    	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>${jacoco.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -96,17 +70,18 @@
 		<dependency>
 			<groupId>qa.free.tools</groupId>
 			<artifactId>selenium-webdriver-factory</artifactId>
-			<version>${qa.free.tools}</version>
+			<version>${qa.free.tools.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>qa.free.tools</groupId>
 			<artifactId>qa-selenium-synchronization-engine</artifactId>
-			<version>${qa.free.tools}</version>
+			<version>${qa.free.tools.version}</version>
 		</dependency>
 	</dependencies>
-	
+
 	<modules>
 		<module>toolkit</module>
 		<module>demo</module>
 	</modules>
+
 </project>

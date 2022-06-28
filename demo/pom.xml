@@ -13,8 +13,16 @@
     <modelVersion>4.0.0</modelVersion>
 
 	<groupId>qa.free.tools</groupId>
-    <artifactId>qa-selenium-framework-toolkit</artifactId>
+    <artifactId>qa-selenium-framework-toolkit-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>qa.free.tools</groupId>
+			<artifactId>qa-selenium-framework-toolkit</artifactId>
+			<version>${version}</version>
+		</dependency>
+	</dependencies>
 	
 </project>
