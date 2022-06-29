@@ -66,7 +66,7 @@ public abstract class SeleniumCore {
 		return !getWebElement().getTagName().equals(expectedHtmlTag);
 	}
 	
-	public boolean triggerElementUpdate(String expectedHtmlTag) {
+	public boolean clickIfUnexpectedElement(String expectedHtmlTag) {
 		if (isCustomElement(expectedHtmlTag)) {
 			getWebElement().click();
 			return true;

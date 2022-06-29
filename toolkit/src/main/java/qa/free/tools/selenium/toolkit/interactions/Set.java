@@ -9,12 +9,16 @@ public class Set extends Interaction<Set> {
 	private String text;
 	private SendKeys sendKeys;
 	
+	public Set() {
+		setBefore(new Before(this));
+	}
+	
 	public Set text(String text) {
 		this.text = text;
 		this.sendKeys = new SendKeysSelenium();
 		return this;
 	}
-
+	
 	@Override
 	public void execute() {
 		super.execute();
