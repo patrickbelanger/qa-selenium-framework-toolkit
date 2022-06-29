@@ -1,8 +1,8 @@
 package qa.free.tools.selenium.toolkit.interactions.browser;
 
-import qa.free.tools.selenium.toolkit.core.base.Core;
+import qa.free.tools.selenium.toolkit.core.base.FrameworkCore;
 
-public class Navigate extends Core {
+public class Navigate extends FrameworkCore {
 
 	public void back() {
 		try {

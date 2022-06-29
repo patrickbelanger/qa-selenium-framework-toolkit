@@ -6,12 +6,13 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import qa.free.tools.selenium.toolkit.core.base.Core;
+import qa.free.tools.selenium.toolkit.core.base.FrameworkCore;
 
-public abstract class BaseTest extends Core {
+public abstract class BaseTest extends FrameworkCore {
 
 	@BeforeSuite(alwaysRun = true)
 	public void startFramework() {
+	
 	}
 	
 	@BeforeMethod(alwaysRun = true)
