@@ -24,7 +24,11 @@ public class SearchPanelHotels extends SearchPanel {
 			.using(Using.JAVASCRIPT)
 			.against(By.xpath("//input[@class='select2-search__field']"))
 			.before()
-				.triggerElementUpdate(By.id("select2-hotels_city-container"), "input")
+				.triggerElementUpdateAgainst(By.id("select2-hotels_city-container"), "input")
+			.after()
+				.pressEnter()
+			.after()
+				.clickMatchingTextElement(By.id("select2-hotels_city-results"))
 			.execute();
 		return this;
 	}
