@@ -22,7 +22,7 @@ import org.openqa.selenium.Keys;
 
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 
-public class SendKeysSelenium extends SendKeys {
+public class SendKeysJavascript extends SendKeys {
 	
 	@Override
 	public void sendKeys(By by, CharSequence keysToSend) {
