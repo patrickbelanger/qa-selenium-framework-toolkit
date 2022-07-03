@@ -15,28 +15,26 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.free.tools.selenium.toolkit.interactions.events.send.text;
+package qa.free.tools.selenium.toolkit.interactions.events.get.text;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
-import lombok.Getter;
-import qa.free.tools.selenium.synchronization.SynchronizationMethods;
+import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 
-public class SendKeysJavascript extends SendKeys {
+public abstract class GetText extends SeleniumCore {
+
+	public abstract String getAttribute(By by, String attributeName);
+	public abstract String getText(By by);
+	public abstract String getValue(By by);
 	
-	@Getter
-	private JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getWebDriver();
 	
-	@Override
-	public void sendKeys(By by, CharSequence keysToSend) {
-		sendKeys(by, keysToSend, false, Keys.NULL);
+	public boolean isInput(WebElement webElement) {
+		return webElement.getTagName().equals("input");
 	}
 	
-	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
-		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
-		getJavascriptExecutor().executeScript("arguments[0].value", getWebElement());
+	public boolean isTextArea(WebElement webElement) {
+		return webElement.getTagName().equals("textarea");
 	}
 	
 }

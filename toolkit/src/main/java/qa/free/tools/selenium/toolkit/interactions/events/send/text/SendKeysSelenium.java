@@ -30,7 +30,7 @@ public class SendKeysSelenium extends SendKeys {
 	}
 	
 	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
-		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
+		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
 		getWebElement().sendKeys(keysToSend, addKey ? key : "");
 	}
 	

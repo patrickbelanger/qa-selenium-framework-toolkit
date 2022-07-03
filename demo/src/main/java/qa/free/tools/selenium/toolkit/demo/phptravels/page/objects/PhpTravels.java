@@ -1,5 +1,6 @@
 package qa.free.tools.selenium.toolkit.demo.phptravels.page.objects;
 
+
 import qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.homepage.HomePage;
 
 public class PhpTravels {
@@ -9,5 +10,6 @@ public class PhpTravels {
 	public static HomePage homePage() {
 		return new HomePage();
 	}
-	
+		
+
 }

@@ -15,28 +15,30 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.free.tools.selenium.toolkit.interactions.events.send.text;
+package qa.free.tools.selenium.toolkit.interactions.events.get.text;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 
-import lombok.Getter;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 
-public class SendKeysJavascript extends SendKeys {
-	
-	@Getter
-	private JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getWebDriver();
+public class GetTextSelenium extends GetText {
 	
 	@Override
-	public void sendKeys(By by, CharSequence keysToSend) {
-		sendKeys(by, keysToSend, false, Keys.NULL);
+	public String getText(By by) {
+		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
+		return getWebElement().getText();
 	}
-	
-	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
-		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
-		getJavascriptExecutor().executeScript("arguments[0].value", getWebElement());
+
+	@Override
+	public String getAttribute(By by, String attributeName) {
+		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
+		return getWebElement().getAttribute(attributeName);
+	}
+
+	@Override
+	public String getValue(By by) {
+		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
+		return getWebElement().getAttribute("value");
 	}
 	
 }

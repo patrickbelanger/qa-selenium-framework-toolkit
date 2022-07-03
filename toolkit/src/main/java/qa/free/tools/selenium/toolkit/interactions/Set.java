@@ -17,8 +17,10 @@
 
 package qa.free.tools.selenium.toolkit.interactions;
 
+import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.exceptions.TextOrValueNotSpecifiedException;
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeys;
+import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJavascript;
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
@@ -34,7 +36,8 @@ public class Set extends Interaction<Set> {
 	
 	public Set text(String text) {
 		this.text = text;
-		this.sendKeys = new SendKeysSelenium();
+		this.sendKeys = getUsing().equals(Using.JAVASCRIPT) ?
+				new SendKeysJavascript() : new SendKeysSelenium();
 		return this;
 	}
 	

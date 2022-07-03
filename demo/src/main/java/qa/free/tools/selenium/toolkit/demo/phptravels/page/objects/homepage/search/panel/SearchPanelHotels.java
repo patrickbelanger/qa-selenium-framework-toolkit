@@ -3,7 +3,6 @@ package qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.homepage.sea
 import org.openqa.selenium.By;
 
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
-import qa.free.tools.selenium.toolkit.enums.Using;
 
 public class SearchPanelHotels extends SearchPanel {
 	
@@ -14,14 +13,13 @@ public class SearchPanelHotels extends SearchPanel {
 
 	@Override
 	public SearchPanelHotels isPageLoaded() {
-		isPageLoaded(By.id("select2-hotels_city-container"));
+		isPageLoaded(By.id("select2-hotels_city-container")); // Returns custom exception if page not loaded
 		return this;
 	}
 	
 	public SearchPanelHotels setCityName(String cityName) {
 		set()
 			.text(cityName)
-			.using(Using.JAVASCRIPT)
 			.against(By.xpath("//input[@class='select2-search__field']"))
 			.before()
 				.triggerElementUpdateAgainst(By.id("select2-hotels_city-container"), "input")
@@ -47,7 +45,5 @@ public class SearchPanelHotels extends SearchPanel {
 			.setCityName(customer.getCityName())
 			.clickSearch();
 	}
-
-	
 
 }

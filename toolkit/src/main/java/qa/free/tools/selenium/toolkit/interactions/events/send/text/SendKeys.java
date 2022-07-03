@@ -19,6 +19,7 @@ package qa.free.tools.selenium.toolkit.interactions.events.send.text;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 
@@ -29,6 +30,14 @@ public abstract class SendKeys extends SeleniumCore {
 	
 	public boolean isEditable(By by) {
 		return true;
+	}
+	
+	public boolean isInput(WebElement webElement) {
+		return webElement.getTagName().equals("input");
+	}
+	
+	public boolean isTextArea(WebElement webElement) {
+		return webElement.getTagName().equals("textarea");
 	}
 	
 }

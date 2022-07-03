@@ -11,7 +11,7 @@ public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 
 	private Customer customer = new Customer();
 	
-	private void setUp() {
+	private void setUp() { // TODO: Externalize test data into JSON
 		customer.setCityName("Montreal");
 	}
 	
@@ -21,9 +21,9 @@ public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 			PhpTravels
 				.homePage()
 				.goTo()
-				.isPageLoaded()
 				.searchPanel(SearchType.HOTELS)
 				.setSearchCriterias(customer);
+			// Making required assertion/verification (in dev)
 	}
 	
 }
