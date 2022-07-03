@@ -19,6 +19,8 @@ package qa.free.tools.selenium.toolkit.interactions;
 
 import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.exceptions.TextOrValueNotSpecifiedException;
+import qa.free.tools.selenium.toolkit.interactions.elements.group.ElementsGroup;
+import qa.free.tools.selenium.toolkit.interactions.elements.group.RadioButtons;
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeys;
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJavascript;
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
@@ -27,6 +29,8 @@ import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 public class Set extends Interaction<Set> {
 
 	private String text;
+	private Enum<?> value;
+	private ElementsGroup radio;
 	private SendKeys sendKeys;
 	
 	public Set() {
@@ -41,9 +45,22 @@ public class Set extends Interaction<Set> {
 		return this;
 	}
 	
+	public Set radio(String value) {
+		this.text = value;
+		this.radio = new RadioButtons();
+		return this;
+	}
+	
+	public Set radio(Enum<?> value) {
+		this.value = value;
+		this.radio = new RadioButtons();
+		return this;
+	}
+	
 	@Override
 	public void execute() {
 		super.execute();
+		setRadio();
 		sendText();
 		clickMatchingTextElementList();
 	}
@@ -60,6 +77,15 @@ public class Set extends Interaction<Set> {
 		}
 		if (sendKeys != null) {
 			sendKeys.sendKeys(getBy(), text, getAfter().isAddKey(), getAfter().getKey());
+		}
+	}
+	
+	private void setRadio() {
+		if ((text == null) || (value == null)) {
+			throw new TextOrValueNotSpecifiedException("No text or value specified");
+		}
+		if (radio != null) {
+			radio.set(getBy(), text != null ? text : value.toString());
 		}
 	}
 	

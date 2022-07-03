@@ -39,5 +39,15 @@ public class PredicateHelper extends SeleniumCore {
 		}
 	}
 	
+	public Optional<WebElement> getMatchingElement(By by, String value) {
+		return getMatchingElement(by, value, SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED);
+	}
+	
+	public Optional<WebElement> getMatchingElement(By by, String value, SynchronizationMethods synchronizationMethods) {
+		setWebElements(getSynchronization().synchronizeWebElements(synchronizationMethods, by));
+		return getWebElements().stream().filter(
+				webElement -> webElement.getAttribute("id").equals(value) ||
+					webElement.getAttribute("value").equals(value)).findAny();
+	}
 	
 }
