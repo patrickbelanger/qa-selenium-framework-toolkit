@@ -17,9 +17,6 @@
 
 package qa.free.tools.selenium.toolkit.interactions;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -39,9 +36,6 @@ public abstract class Interaction<T> extends SeleniumCore {
 	@Getter(AccessLevel.PRIVATE)
 	@Setter(AccessLevel.PROTECTED)
 	private Before before;
-	@Getter(AccessLevel.PROTECTED)
-	@Setter(AccessLevel.PROTECTED)
-	private Date date;
 	@Getter(AccessLevel.PROTECTED)
 	@Setter(AccessLevel.PROTECTED)
 	private By by;
@@ -65,10 +59,6 @@ public abstract class Interaction<T> extends SeleniumCore {
 	
 	public After after() {
 		return getAfter();
-	}
-	
-	public Date date() {
-		return getDate();
 	}
 	
 	public void execute() {
@@ -132,43 +122,6 @@ public abstract class Interaction<T> extends SeleniumCore {
 			return currentInstance;
 		}
 		
-	}
-	
-	public class Date extends Interaction<T> {
-		
-		@Getter(AccessLevel.PUBLIC)
-		private LocalDate dateToApply;
-		private By calendarContainer;
-		private Interaction<T> currentInstance;
-		
-		public Date(Interaction<T> currentInstance) {
-			this.currentInstance = currentInstance;
-		}
-		
-		public Interaction<T> currentDate() {
-			dateToApply = LocalDate.now();
-			return currentInstance;
-		}
-		
-		public Interaction<T> minus(int amountToSubstract, ChronoUnit chronoUnit) {
-			dateToApply = LocalDate.now().minus(amountToSubstract, chronoUnit);
-			return currentInstance;
-		}
-		
-		public Interaction<T> plus(int amountToAdd, ChronoUnit chronoUnit) {
-			dateToApply = LocalDate.now().plus(amountToAdd, chronoUnit);
-			return this;
-		}
-
-		public By getCalendarContainer() {
-			return calendarContainer;
-		}
-
-		public Date setCalendarContainer(By calendarContainer) {
-			this.calendarContainer = calendarContainer;
-			return this;
-		}
-	
 	}
 	
 }

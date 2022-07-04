@@ -18,6 +18,7 @@
 package qa.free.tools.selenium.toolkit.utilities;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -39,15 +40,27 @@ public class PredicateHelper extends SeleniumCore {
 		}
 	}
 	
-	public Optional<WebElement> getMatchingElement(By by, String value) {
-		return getMatchingElement(by, value, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
+	public Optional<WebElement> getMatchingElement(By by, Predicate<? super WebElement> predicate) {
+		return getMatchingElement(by, predicate, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
 	}
 	
-	public Optional<WebElement> getMatchingElement(By by, String value, SynchronizationMethods synchronizationMethods) {
+	public Optional<WebElement> getMatchingElement(By by, Predicate<? super WebElement> predicate, 
+			SynchronizationMethods synchronizationMethods) {
 		setWebElements(getSynchronization().synchronizeWebElements(synchronizationMethods, by));
-		return getWebElements().stream().filter(
-				webElement -> webElement.getAttribute("id").equals(value) ||
-					webElement.getAttribute("value").equals(value)).findAny();
+		return getWebElements().stream().filter(predicate).findAny();
+	}
+	
+	public Optional<WebElement> getMatchingElementUsingIdOrValue(By by, String idOrvalue) {
+		return getMatchingElementUsingIdOrValue(by, idOrvalue, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
+	}
+	
+	public Optional<WebElement> getMatchingElementUsingIdOrValue(By by, String idOrvalue, 
+			SynchronizationMethods synchronizationMethods) {
+		return getMatchingElement(by, webElement -> 
+				webElement.getAttribute("id").equals(idOrvalue) ||
+				webElement.getAttribute("value").equals(idOrvalue), 
+			synchronizationMethods
+		);
 	}
 	
 }

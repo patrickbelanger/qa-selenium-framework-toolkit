@@ -1,7 +1,6 @@
 package qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.homepage.search.panel;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import org.openqa.selenium.By;
 
@@ -47,9 +46,9 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	
 	public SearchPanelFlights setTrip(Trip trip) {
 		set()
-			.radio(trip)
-			.against(By.name("trip"))
-			.execute();
+			.radio(trip.toString())
+		.against(By.name("trip"))
+		.execute();
 		return this;
 	}
 	
@@ -64,7 +63,7 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	public SearchPanelFlights setDepartureDate(LocalDate departureDate) {
 		set()
 			.date()
-				.plus(2, ChronoUnit.DAYS)
+				.specificDate(departureDate)
 			.date()
 				.setCalendarContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
 			.against(By.id("departure"))
@@ -73,7 +72,13 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	}
 	
 	public SearchPanelFlights setReturnDate(LocalDate returnDate) {
-
+		set()
+		.date()
+			.specificDate(returnDate)
+		.date()
+			.setCalendarContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+		.against(By.id("departure"))
+		.execute();
 		return this;
 	}
 	

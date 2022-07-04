@@ -12,7 +12,7 @@ import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 public abstract class ElementsGroup extends SeleniumCore {
 
 	public void set(By by, String value) {
-		Optional<WebElement> matchingWebElement = new PredicateHelper().getMatchingElement(by, value);
+		Optional<WebElement> matchingWebElement = new PredicateHelper().getMatchingElementUsingIdOrValue(by, value);
 		if (matchingWebElement.isPresent()) {
 			new ClickSelenium().click(matchingWebElement.get());
 		}

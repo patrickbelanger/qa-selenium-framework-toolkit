@@ -17,6 +17,14 @@
 
 package qa.free.tools.selenium.toolkit.interactions;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+import org.openqa.selenium.By;
+
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.exceptions.TextOrValueNotSpecifiedException;
 import qa.free.tools.selenium.toolkit.interactions.elements.group.ElementsGroup;
@@ -26,10 +34,15 @@ import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJava
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
-public class Set extends Interaction<Set> {
+public class Set<T extends Set<T>> extends Interaction<T> {
 
+	@Getter(AccessLevel.PROTECTED)
+	@Setter(AccessLevel.PROTECTED)
+	private Date date;
+	@Getter(AccessLevel.PROTECTED)
+	@Setter(AccessLevel.PROTECTED)
+	private After after;
 	private String text;
-	private Enum<?> value;
 	private ElementsGroup radio;
 	private SendKeys sendKeys;
 	
@@ -39,19 +52,17 @@ public class Set extends Interaction<Set> {
 		setDate(new Date(this));
 	}
 	
-	public Set radio(String value) {
-		this.text = value;
+	public Date date() {
+		return getDate();
+	}
+	
+	public Set<T> radio(String idOrvalue) {
+		this.text = idOrvalue;
 		this.radio = new RadioButtons();
 		return this;
 	}
 	
-	public Set radio(Enum<?> value) {
-		this.value = value;
-		this.radio = new RadioButtons();
-		return this;
-	}
-
-	public Set text(String text) {
+	public Set<T> text(String text) {
 		this.text = text;
 		this.sendKeys = getUsing().equals(Using.JAVASCRIPT) ?
 				new SendKeysJavascript() : new SendKeysSelenium();
@@ -83,18 +94,60 @@ public class Set extends Interaction<Set> {
 	}
 	
 	private void setDate() {
-		if (getDate().getDateToApply() == null) {
+		if (getDate().getDateToSet() == null) {
 			throw new TextOrValueNotSpecifiedException("No date specified");
 		}
 	}
 	
 	private void setRadio() {
 		if (radio != null) {
-			if ((text == null) && (value == null)) {
+			if (text == null) {
 				throw new TextOrValueNotSpecifiedException("No text/value specified");
 			}
-			radio.set(getBy(), text != null ? text : value.toString());
+			radio.set(getBy(), text);
 		}
+	}
+	
+	public class Date extends Set<T> {
+		
+		@Getter(AccessLevel.PUBLIC)
+		private LocalDate dateToSet;
+		private By calendarContainer;
+		private Set<T> currentInstance;
+		
+		public Date(Set<T> currentInstance) {
+			this.currentInstance = currentInstance;
+		}
+		
+		public Set<T> currentDate() {
+			dateToSet = LocalDate.now();
+			return currentInstance;
+		}
+		
+		public Set<T> minus(int amountToSubstract, ChronoUnit chronoUnit) {
+			dateToSet = LocalDate.now().minus(amountToSubstract, chronoUnit);
+			return currentInstance;
+		}
+		
+		public Set<T> plus(int amountToAdd, ChronoUnit chronoUnit) {
+			dateToSet = LocalDate.now().plus(amountToAdd, chronoUnit);
+			return this;
+		}
+
+		public Set<T> specificDate(LocalDate localDate) {
+			dateToSet = localDate;
+			return this;
+		}
+		
+		public By getCalendarContainer() {
+			return calendarContainer;
+		}
+
+		public Set<T> setCalendarContainer(By calendarContainer) {
+			this.calendarContainer = calendarContainer;
+			return this;
+		}
+	
 	}
 	
 }

@@ -15,7 +15,7 @@ import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 public abstract class DatePicker extends SeleniumCore {
 	
 	public abstract void setDate(By by, LocalDate localDate);
-	public abstract void setDate(By by, Predicate<? extends WebElement> predicate, LocalDate localDate);
+	public abstract void setDate(By by, Predicate<? super WebElement> predicate, LocalDate localDate);
 	
 	public String getDate(By by) {
 		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
