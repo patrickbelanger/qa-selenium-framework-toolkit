@@ -20,6 +20,7 @@ package qa.free.tools.selenium.toolkit.interactions.events.send.text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import lombok.Getter;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
@@ -36,7 +37,18 @@ public class SendKeysJavascript extends SendKeys {
 	
 	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
 		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
+		sendKeys(getWebElement(), keysToSend, addKey, key);
+	}
+
+	@Override
+	public void sendKeys(WebElement webElement, CharSequence keysToSend) {
+		sendKeys(webElement, keysToSend, false, Keys.NULL);
+	}
+
+	@Override
+	public void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key) {
 		getJavascriptExecutor().executeScript("arguments[0].value", getWebElement());
+		webElement.sendKeys(addKey ? key : "");
 	}
 	
 }

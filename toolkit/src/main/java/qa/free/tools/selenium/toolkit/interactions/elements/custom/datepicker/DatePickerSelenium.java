@@ -1,9 +1,10 @@
 package qa.free.tools.selenium.toolkit.interactions.elements.custom.datepicker;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.function.Predicate;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class DatePickerSelenium extends DatePicker {
 
@@ -12,17 +13,10 @@ public class DatePickerSelenium extends DatePicker {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public String getDate(By by) {
+	public void setDate(By by, Predicate<? extends WebElement> predicate, LocalDate localDate) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getDate(By by, DateTimeFormatter dateTimeFormatter) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
