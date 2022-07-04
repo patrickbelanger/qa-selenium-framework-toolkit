@@ -2,31 +2,36 @@ package qa.free.tools.selenium.toolkit.demo.phptravels.data.model;
 
 import java.time.LocalDate;
 
+import qa.free.tools.selenium.toolkit.demo.phptravels.enums.Trip;
+
 public class Customer {
 
-	private String fromCountry;
-	private String toCountry;
+	private String fromDestination;
+	private String toDestination;
 	private String cityName;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
+	private LocalDate departureDate;
+	private LocalDate returnDate;
+	private Trip tripType;
 	private int numberRooms;
 	private int numberAdults;
 	private int numberChildren;
 	
-	public String getFromCountry() {
-		return fromCountry;
+	public String getFromDestination() {
+		return fromDestination;
 	}
 	
-	public void setFromCountry(String fromCountry) {
-		this.fromCountry = fromCountry;
+	public void setFromDestination(String fromDestination) {
+		this.fromDestination = fromDestination;
 	}
 	
-	public String getToCountry() {
-		return toCountry;
+	public String getToDestination() {
+		return toDestination;
 	}
 	
-	public void setToCountry(String toCountry) {
-		this.toCountry = toCountry;
+	public void setToDestination(String toDestination) {
+		this.toDestination = toDestination;
 	}
 	
 	public String getCityName() {
@@ -76,5 +81,31 @@ public class Customer {
 	public void setNumberChildren(int numberChildren) {
 		this.numberChildren = numberChildren;
 	}
+
+	public Trip getTripType() {
+		return tripType;
+	}
+
+	public void setTripType(Trip tripType) {
+		this.tripType = tripType;
+	}
+	
+	public LocalDate getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public LocalDate getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(LocalDate returnDate) {
+		this.returnDate = returnDate;
+	}
+	
+	
 	
 }

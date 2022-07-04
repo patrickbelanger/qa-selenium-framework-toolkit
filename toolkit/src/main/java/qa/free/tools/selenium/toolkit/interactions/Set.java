@@ -36,13 +36,7 @@ public class Set extends Interaction<Set> {
 	public Set() {
 		setBefore(new Before(this));
 		setAfter(new After(this));
-	}
-	
-	public Set text(String text) {
-		this.text = text;
-		this.sendKeys = getUsing().equals(Using.JAVASCRIPT) ?
-				new SendKeysJavascript() : new SendKeysSelenium();
-		return this;
+		setDate(new Date(this));
 	}
 	
 	public Set radio(String value) {
@@ -56,10 +50,18 @@ public class Set extends Interaction<Set> {
 		this.radio = new RadioButtons();
 		return this;
 	}
+
+	public Set text(String text) {
+		this.text = text;
+		this.sendKeys = getUsing().equals(Using.JAVASCRIPT) ?
+				new SendKeysJavascript() : new SendKeysSelenium();
+		return this;
+	}
 	
 	@Override
 	public void execute() {
 		super.execute();
+		setDate();
 		setRadio();
 		sendText();
 		clickMatchingTextElementList();
@@ -72,19 +74,25 @@ public class Set extends Interaction<Set> {
 	}
 	
 	private void sendText() {
-		if (text == null) {
-			throw new TextOrValueNotSpecifiedException("No text or value specified");
-		}
 		if (sendKeys != null) {
+			if (text == null) {
+				throw new TextOrValueNotSpecifiedException("No text/value specified");
+			}
 			sendKeys.sendKeys(getBy(), text, getAfter().isAddKey(), getAfter().getKey());
 		}
 	}
 	
-	private void setRadio() {
-		if ((text == null) || (value == null)) {
-			throw new TextOrValueNotSpecifiedException("No text or value specified");
+	private void setDate() {
+		if (getDate().getDateToApply() == null) {
+			throw new TextOrValueNotSpecifiedException("No date specified");
 		}
+	}
+	
+	private void setRadio() {
 		if (radio != null) {
+			if ((text == null) && (value == null)) {
+				throw new TextOrValueNotSpecifiedException("No text/value specified");
+			}
 			radio.set(getBy(), text != null ? text : value.toString());
 		}
 	}

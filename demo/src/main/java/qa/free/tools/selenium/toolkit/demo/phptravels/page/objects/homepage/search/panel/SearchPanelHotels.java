@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
 
-public class SearchPanelHotels extends SearchPanel {
+public class SearchPanelHotels extends SearchPanel<SearchPanelHotels> {
 	
 	@Override
 	public SearchPanelHotels goTo() {

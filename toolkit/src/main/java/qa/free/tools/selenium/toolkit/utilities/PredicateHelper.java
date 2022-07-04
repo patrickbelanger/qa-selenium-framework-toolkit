@@ -40,7 +40,7 @@ public class PredicateHelper extends SeleniumCore {
 	}
 	
 	public Optional<WebElement> getMatchingElement(By by, String value) {
-		return getMatchingElement(by, value, SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED);
+		return getMatchingElement(by, value, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
 	}
 	
 	public Optional<WebElement> getMatchingElement(By by, String value, SynchronizationMethods synchronizationMethods) {
