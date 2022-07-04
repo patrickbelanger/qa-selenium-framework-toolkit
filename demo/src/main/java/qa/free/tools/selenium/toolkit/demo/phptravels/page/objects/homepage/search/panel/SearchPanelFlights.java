@@ -26,8 +26,8 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 			.against(By.name("from"))
 			.after()
 				.pressEnter()
-			.after()
 				.clickMatchingTextElement(By.className("autocomplete-result"))
+				.and()
 			.execute();
 		return this;
 	}
@@ -38,8 +38,8 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 			.against(By.name("to"))
 			.after()
 				.pressEnter()
-			.after()
 				.clickMatchingTextElement(By.className("autocomplete-result"))
+				.and()
 			.execute();
 		return this;
 	}
@@ -64,8 +64,8 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		set()
 			.date()
 				.specificDate(departureDate)
-			.date()
-				.setCalendarContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+				.setDatePickerContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+				.apply()
 			.against(By.id("departure"))
 			.execute();
 		return this;
@@ -75,8 +75,8 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		set()
 		.date()
 			.specificDate(returnDate)
-		.date()
-			.setCalendarContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+			.setDatePickerContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+			.apply()
 		.against(By.id("departure"))
 		.execute();
 		return this;

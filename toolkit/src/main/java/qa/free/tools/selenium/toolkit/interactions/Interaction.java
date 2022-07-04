@@ -87,21 +87,25 @@ public abstract class Interaction<T> extends SeleniumCore {
 			this.currentInstance = currentInstance;
 		}
 		
-		public Interaction<T> pressTab() {
+		public After pressTab() {
 			this.addKey = true;
 			this.key = Keys.TAB;
-			return currentInstance;
+			return this;
 		}
 		
-		public Interaction<T> pressEnter() {
+		public After pressEnter() {
 			this.addKey = true;
 			this.key = Keys.ENTER;
-			return currentInstance;
+			return this;
 		}
 
-		public Interaction<T> clickMatchingTextElement(By listElements) {
+		public After clickMatchingTextElement(By listElements) {
 			this.clickMatchingTextElement = true;
 			this.listElements = listElements;
+			return this;
+		}
+		
+		public Interaction<T> and() {
 			return currentInstance;
 		}
 		
@@ -115,10 +119,14 @@ public abstract class Interaction<T> extends SeleniumCore {
 			this.currentInstance = currentInstance;
 		}
 		
-		public Interaction<T> triggerElementUpdateAgainst(By locator, String expectedHtmlTag) {
+		public Before triggerElementUpdateAgainst(By locator, String expectedHtmlTag) {
 			setWebElement(getSynchronization().synchronizeWebElement(
 					SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, locator));
 			clickIfUnexpectedElement(expectedHtmlTag);
+			return this;
+		}
+
+		public Interaction<T> and() {
 			return currentInstance;
 		}
 		

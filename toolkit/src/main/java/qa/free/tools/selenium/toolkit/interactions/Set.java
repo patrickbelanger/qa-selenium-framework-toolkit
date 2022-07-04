@@ -49,10 +49,10 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	public Set() {
 		setBefore(new Before(this));
 		setAfter(new After(this));
-		setDate(new Date(this));
 	}
 	
 	public Date date() {
+		setDate(new Date(this));
 		return getDate();
 	}
 	
@@ -94,8 +94,10 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	}
 	
 	private void setDate() {
-		if (getDate().getDateToSet() == null) {
-			throw new TextOrValueNotSpecifiedException("No date specified");
+		if (date != null) {
+  		if (getDate().getDateToSet() == null) {
+  			throw new TextOrValueNotSpecifiedException("No date specified");
+  		}
 		}
 	}
 	
@@ -108,46 +110,50 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 		}
 	}
 	
-	public class Date extends Set<T> {
+	public class Date extends Interaction<T> {
 		
 		@Getter(AccessLevel.PUBLIC)
 		private LocalDate dateToSet;
-		private By calendarContainer;
+		private By datePickerContainer;
 		private Set<T> currentInstance;
 		
 		public Date(Set<T> currentInstance) {
 			this.currentInstance = currentInstance;
 		}
 		
-		public Set<T> currentDate() {
+		public Date currentDate() {
 			dateToSet = LocalDate.now();
-			return currentInstance;
+			return this;
 		}
 		
-		public Set<T> minus(int amountToSubstract, ChronoUnit chronoUnit) {
+		public Date minus(int amountToSubstract, ChronoUnit chronoUnit) {
 			dateToSet = LocalDate.now().minus(amountToSubstract, chronoUnit);
-			return currentInstance;
+			return this;
 		}
 		
-		public Set<T> plus(int amountToAdd, ChronoUnit chronoUnit) {
+		public Date plus(int amountToAdd, ChronoUnit chronoUnit) {
 			dateToSet = LocalDate.now().plus(amountToAdd, chronoUnit);
 			return this;
 		}
 
-		public Set<T> specificDate(LocalDate localDate) {
+		public Date specificDate(LocalDate localDate) {
 			dateToSet = localDate;
 			return this;
 		}
 		
 		public By getCalendarContainer() {
-			return calendarContainer;
+			return datePickerContainer;
 		}
 
-		public Set<T> setCalendarContainer(By calendarContainer) {
-			this.calendarContainer = calendarContainer;
+		public Date setDatePickerContainer(By datePickerContainer) {
+			this.datePickerContainer = datePickerContainer;
 			return this;
 		}
 	
+		public Set<T> apply() {
+			return currentInstance;
+		}
+		
 	}
 	
 }

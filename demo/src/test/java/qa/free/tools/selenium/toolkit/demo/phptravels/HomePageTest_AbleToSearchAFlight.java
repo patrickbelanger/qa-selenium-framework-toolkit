@@ -1,5 +1,8 @@
 package qa.free.tools.selenium.toolkit.demo.phptravels;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import org.testng.annotations.Test;
 
 import qa.free.tools.selenium.toolkit.core.base.testng.BaseTest;
@@ -15,6 +18,8 @@ public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 	private void setUp() { // TODO: Externalize test data into JSON
 		customer.setFromDestination("YUL");
 		customer.setToDestination("YTZ");
+		customer.setDepartureDate(LocalDate.now());
+		customer.setReturnDate(LocalDate.now().plus(2, ChronoUnit.DAYS));
 		customer.setTripType(Trip.ROUND_TRIP);
 	}
 	

@@ -47,6 +47,7 @@ public abstract class FrameworkCore extends SeleniumCore {
 		 * Set a value against an element
 		 * @return {@link Set}
 		 */
+		@SuppressWarnings("rawtypes")
 		public Set set() {
 			return new Set();
 		}
