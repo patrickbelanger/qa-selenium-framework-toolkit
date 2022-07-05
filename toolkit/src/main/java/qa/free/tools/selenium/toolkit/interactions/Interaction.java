@@ -33,7 +33,7 @@ public abstract class Interaction<T> extends SeleniumCore {
 	@Getter(AccessLevel.PROTECTED)
 	@Setter(AccessLevel.PROTECTED)
 	private After after;
-	@Getter(AccessLevel.PRIVATE)
+	@Getter(AccessLevel.PROTECTED)
 	@Setter(AccessLevel.PROTECTED)
 	private Before before;
 	@Getter(AccessLevel.PROTECTED)
@@ -113,10 +113,19 @@ public abstract class Interaction<T> extends SeleniumCore {
 	
 	public class Before extends Interaction<T> {
 		
+		@Getter(AccessLevel.PUBLIC)
+		private boolean clearInput;
+
+		
 		private Interaction<T> currentInstance;
 		
 		public Before(Interaction<T> currentInstance) {
 			this.currentInstance = currentInstance;
+		}
+		
+		public Before clearInput() {
+			this.clearInput = true;
+			return this;
 		}
 		
 		public Before triggerElementUpdateAgainst(By locator, String expectedHtmlTag) {

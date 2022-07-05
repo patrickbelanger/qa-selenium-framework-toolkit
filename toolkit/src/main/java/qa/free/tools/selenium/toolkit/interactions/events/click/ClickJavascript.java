@@ -15,7 +15,7 @@ public class ClickJavascript extends Click {
 	public void click(By by) {
 		getJavascriptExecutor().executeScript(
 				"arguments[0].click()", 
-				getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
+				getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
 	}
 
 	@Override

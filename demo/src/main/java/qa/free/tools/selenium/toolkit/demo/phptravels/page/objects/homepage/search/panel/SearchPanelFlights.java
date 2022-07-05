@@ -63,10 +63,14 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	public SearchPanelFlights setDepartureDate(LocalDate departureDate) {
 		set()
 			.date()
-				.specificDate(departureDate)
-				.setDatePickerContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+				.setSpecificDate(departureDate)
+				.usingSendKeys()
+				.usingDateFormatter("dd-MM-yyyy")
 				.apply()
 			.against(By.id("departure"))
+			.before()
+				.clearInput()
+				.and()
 			.execute();
 		return this;
 	}
@@ -74,10 +78,14 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	public SearchPanelFlights setReturnDate(LocalDate returnDate) {
 		set()
 		.date()
-			.specificDate(returnDate)
-			.setDatePickerContainer(By.xpath("//div[contains(@class,'datepicker dropdown-menu') and contains(@style,'block')]"))
+			.setSpecificDate(returnDate)
+			.usingSendKeys()
+			.usingDateFormatter("dd-MM-yyyy")
 			.apply()
-		.against(By.id("departure"))
+		.against(By.id("return"))
+		.before()
+			.clearInput()
+			.and()
 		.execute();
 		return this;
 	}
@@ -89,6 +97,8 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 			.setTrip(customer.getTripType())
 			.setFlightFrom(customer.getFromDestination())
 			.setToDestination(customer.getToDestination())
+			.setDepartureDate(customer.getDepartureDate())
+			.setReturnDate(customer.getReturnDate())
 			.clickSearch();
 	}
 

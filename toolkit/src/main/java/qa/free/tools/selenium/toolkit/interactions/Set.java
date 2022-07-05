@@ -18,6 +18,7 @@
 package qa.free.tools.selenium.toolkit.interactions;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import org.openqa.selenium.By;
@@ -89,7 +90,8 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 			if (text == null) {
 				throw new TextOrValueNotSpecifiedException("No text/value specified");
 			}
-			sendKeys.sendKeys(getBy(), text, getAfter().isAddKey(), getAfter().getKey());
+			sendKeys.sendKeys(getBy(), text, getAfter().isAddKey(), getAfter().getKey(), 
+					getBefore().isClearInput());
 		}
 	}
 	
@@ -97,6 +99,9 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 		if (date != null) {
   		if (getDate().getDateToSet() == null) {
   			throw new TextOrValueNotSpecifiedException("No date specified");
+  		}
+  		if (getDate().isSendKeys()) {
+  			text(getDate().getDateToSet());
   		}
 		}
 	}
@@ -113,7 +118,9 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	public class Date extends Interaction<T> {
 		
 		@Getter(AccessLevel.PUBLIC)
+		public boolean sendKeys;
 		private LocalDate dateToSet;
+		private String dateFormatPattern;
 		private By datePickerContainer;
 		private Set<T> currentInstance;
 		
@@ -136,7 +143,7 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 			return this;
 		}
 
-		public Date specificDate(LocalDate localDate) {
+		public Date setSpecificDate(LocalDate localDate) {
 			dateToSet = localDate;
 			return this;
 		}
@@ -150,6 +157,20 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 			return this;
 		}
 	
+		public Date usingDateFormatter(String dateFormatPattern) {
+			this.dateFormatPattern = dateFormatPattern;
+			return this;
+		}
+		
+		public Date usingSendKeys() {
+			this.sendKeys = true;
+			return this;
+		}
+		
+		public String getDateToSet() {
+			return dateToSet.format(DateTimeFormatter.ofPattern(this.dateFormatPattern));
+		}
+		
 		public Set<T> apply() {
 			return currentInstance;
 		}

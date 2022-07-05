@@ -36,10 +36,18 @@ public class SendKeysJavascript extends SendKeys {
 	}
 	
 	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
+		sendKeys(by, keysToSend, false, Keys.NULL, false);
+	}
+	
+	@Override
+	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key, boolean clearInput) {
 		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
+		if (clearInput) {
+			getWebElement().clear();
+		}
 		sendKeys(getWebElement(), keysToSend, addKey, key);
 	}
-
+	
 	@Override
 	public void sendKeys(WebElement webElement, CharSequence keysToSend) {
 		sendKeys(webElement, keysToSend, false, Keys.NULL);

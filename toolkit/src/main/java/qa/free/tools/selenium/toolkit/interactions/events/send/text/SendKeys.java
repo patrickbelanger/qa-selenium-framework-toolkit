@@ -27,6 +27,7 @@ public abstract class SendKeys extends SeleniumCore {
 
 	public abstract void sendKeys(By by, CharSequence keysToSend);
 	public abstract void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key);
+	public abstract void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key, boolean clearInput);
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend);
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key);
 	

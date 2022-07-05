@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 import qa.free.tools.selenium.toolkit.core.page.object.PageObject;
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
+import qa.free.tools.selenium.toolkit.enums.Using;
 
 public abstract class SearchPanel<T extends SearchPanel<T>> extends PageObject<T> {
 	
@@ -13,6 +14,7 @@ public abstract class SearchPanel<T extends SearchPanel<T>> extends PageObject<T
 		perform()
 			.click()
 			.against(By.xpath("//button[@data-bs-target='#hotels']"))
+			.using(Using.JAVASCRIPT)
 			.execute();
 		return this;
 	}
@@ -21,6 +23,7 @@ public abstract class SearchPanel<T extends SearchPanel<T>> extends PageObject<T
 		perform()
 			.click()
 			.against(By.xpath("//button[@data-bs-target='#flights']"))
+			.using(Using.JAVASCRIPT)
 			.execute();
 		return this;
 	}
@@ -29,6 +32,7 @@ public abstract class SearchPanel<T extends SearchPanel<T>> extends PageObject<T
 		perform()
 			.click()
 			.against(By.xpath("//button[@data-bs-target='#tours']"))
+			.using(Using.JAVASCRIPT)
 			.execute();
 		return this;
 	}
@@ -37,6 +41,7 @@ public abstract class SearchPanel<T extends SearchPanel<T>> extends PageObject<T
 		perform()
 			.click()
 			.against(By.xpath("//button[@data-bs-target='#visa']"))
+			.using(Using.JAVASCRIPT)
 			.execute();
 		return this;
 	}

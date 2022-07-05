@@ -3,6 +3,7 @@ package qa.free.tools.selenium.toolkit.demo.phptravels;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import qa.free.tools.selenium.toolkit.core.base.testng.BaseTest;
@@ -13,9 +14,11 @@ import qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.PhpTravels;
 
 public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 
-	private Customer customer = new Customer();
+	private Customer customer;
 	
-	private void setUp() { // TODO: Externalize test data into JSON
+	@BeforeTest(alwaysRun=true)
+	void setUp() { // TODO: Externalize test data into JSON
+		this.customer = new Customer();
 		customer.setFromDestination("YUL");
 		customer.setToDestination("YTZ");
 		customer.setDepartureDate(LocalDate.now());
@@ -24,8 +27,7 @@ public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 	}
 	
 	@Test
-	public void homePage_ableToSearchAFlight() {
-			setUp();
+	void homePage_ableToSearchAFlight() {
 			PhpTravels
 				.homePage()
 				.goTo()
