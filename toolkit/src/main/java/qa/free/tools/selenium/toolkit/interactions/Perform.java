@@ -26,6 +26,9 @@ import qa.free.tools.selenium.toolkit.interactions.events.click.ClickJavascript;
 import qa.free.tools.selenium.toolkit.interactions.events.click.ClickMethods;
 import qa.free.tools.selenium.toolkit.interactions.events.click.ClickSelenium;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class Perform extends Interaction<Perform> {
 	
 	@Getter(AccessLevel.PRIVATE)

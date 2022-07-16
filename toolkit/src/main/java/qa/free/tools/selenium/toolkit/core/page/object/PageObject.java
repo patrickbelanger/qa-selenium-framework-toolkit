@@ -14,7 +14,7 @@ public abstract class PageObject<T> extends FrameworkCore {
 	
 	public boolean isPageLoaded(By by) {
 		try {
-			return getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by) != null;
+			return getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by) != null;
 		} catch(ElementSynchronizationException e) {
 			throw new ExpectedPageNotLoadedException(
 					String.format("The expected page '%s' is not loaded", this.getClass().getSimpleName()));

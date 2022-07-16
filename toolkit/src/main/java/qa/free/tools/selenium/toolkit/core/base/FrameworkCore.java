@@ -14,7 +14,7 @@ import qa.free.tools.selenium.webdriver.factory.WebDriverFactory;
 public abstract class FrameworkCore extends SeleniumCore {
 
 		private static ThreadLocal<String> testName = new ThreadLocal<>();
-	
+		
 		public String getTestName() {
 			return testName.get();
 		}

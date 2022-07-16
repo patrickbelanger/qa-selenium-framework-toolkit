@@ -25,6 +25,9 @@ import org.openqa.selenium.WebElement;
 import lombok.Getter;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class SendKeysJavascript extends SendKeys {
 	
 	@Getter

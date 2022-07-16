@@ -27,6 +27,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import qa.free.tools.selenium.toolkit.enums.Using;
+import qa.free.tools.selenium.toolkit.exceptions.MissingClosingMethodInBuilderException;
 import qa.free.tools.selenium.toolkit.exceptions.TextOrValueNotSpecifiedException;
 import qa.free.tools.selenium.toolkit.interactions.elements.group.ElementsGroup;
 import qa.free.tools.selenium.toolkit.interactions.elements.group.RadioButtons;
@@ -100,6 +101,9 @@ public class Set<T extends Set<T>> extends Interaction<T> {
   		if (getDate().getDateToSet() == null) {
   			throw new TextOrValueNotSpecifiedException("No date specified");
   		}
+  		if (!getDate().isAppliedCalled()) {
+  			throw new MissingClosingMethodInBuilderException("date() builder must be closed using the apply() method");
+  		}
   		if (getDate().isSendKeys()) {
   			text(getDate().getDateToSet());
   		}
@@ -123,6 +127,8 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 		private String dateFormatPattern;
 		private By datePickerContainer;
 		private Set<T> currentInstance;
+		@Getter(AccessLevel.PUBLIC)
+		private boolean appliedCalled;
 		
 		public Date(Set<T> currentInstance) {
 			this.currentInstance = currentInstance;
@@ -172,6 +178,7 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 		}
 		
 		public Set<T> apply() {
+			this.appliedCalled = true;
 			return currentInstance;
 		}
 		

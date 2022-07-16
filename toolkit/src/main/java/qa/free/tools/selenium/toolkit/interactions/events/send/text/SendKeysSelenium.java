@@ -23,6 +23,9 @@ import org.openqa.selenium.WebElement;
 
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class SendKeysSelenium extends SendKeys {
 	
 	@Override

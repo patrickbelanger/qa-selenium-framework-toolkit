@@ -26,11 +26,14 @@ import org.openqa.selenium.WebElement;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class PredicateHelper extends SeleniumCore {
 
 	public void clickMatchingTextElement(By listElements, String text) {
 		setWebElements(getSynchronization()
-				.synchronizeWebElements(SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED, listElements));
+				.synchronizeWebElements(SynchronizationMethods.VISIBILITY_OF_ALL_ELEMENTS_LOCATED_BY, listElements));
 		Optional<WebElement> matchingElement = getWebElements()
 				.stream()
 				.filter(e -> e.getText().equals(text) || e.getText().contains(text))
@@ -41,7 +44,7 @@ public class PredicateHelper extends SeleniumCore {
 	}
 	
 	public Optional<WebElement> getMatchingElement(By by, Predicate<? super WebElement> predicate) {
-		return getMatchingElement(by, predicate, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
+		return getMatchingElement(by, predicate, SynchronizationMethods.VISIBILITY_OF_ALL_ELEMENTS_LOCATED_BY);
 	}
 	
 	public Optional<WebElement> getMatchingElement(By by, Predicate<? super WebElement> predicate, 
@@ -51,7 +54,8 @@ public class PredicateHelper extends SeleniumCore {
 	}
 	
 	public Optional<WebElement> getMatchingElementUsingIdOrValue(By by, String idOrvalue) {
-		return getMatchingElementUsingIdOrValue(by, idOrvalue, SynchronizationMethods.PRESENCE_OF_ALL_ELEMENTS_LOCATED);
+		return getMatchingElementUsingIdOrValue(by, idOrvalue, 
+				SynchronizationMethods.VISIBILITY_OF_ALL_ELEMENTS_LOCATED_BY);
 	}
 	
 	public Optional<WebElement> getMatchingElementUsingIdOrValue(By by, String idOrvalue, 

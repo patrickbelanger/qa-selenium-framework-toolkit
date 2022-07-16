@@ -28,6 +28,9 @@ import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.exceptions.ElementNotSpecifiedException;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class Interaction<T> extends SeleniumCore {
 	
 	@Getter(AccessLevel.PROTECTED)
@@ -71,15 +74,14 @@ public abstract class Interaction<T> extends SeleniumCore {
 		
 		@Getter(AccessLevel.PUBLIC)
 		private boolean addKey;
-
 		@Getter(AccessLevel.PUBLIC)
 		private boolean clickMatchingTextElement;
-		
 		@Getter(AccessLevel.PUBLIC)
 		private Keys key;
-		
 		@Getter(AccessLevel.PUBLIC)
 		private By listElements;
+		@Getter(AccessLevel.PUBLIC)
+		private boolean andCalled;
 		
 		private Interaction<T> currentInstance;
 		
@@ -115,7 +117,8 @@ public abstract class Interaction<T> extends SeleniumCore {
 		
 		@Getter(AccessLevel.PUBLIC)
 		private boolean clearInput;
-
+		@Getter(AccessLevel.PUBLIC)
+		private boolean andCalled;
 		
 		private Interaction<T> currentInstance;
 		
@@ -134,8 +137,9 @@ public abstract class Interaction<T> extends SeleniumCore {
 			clickIfUnexpectedElement(expectedHtmlTag);
 			return this;
 		}
-
+	
 		public Interaction<T> and() {
+			this.andCalled = true;
 			return currentInstance;
 		}
 		
