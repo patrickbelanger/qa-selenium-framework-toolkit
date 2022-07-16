@@ -4,17 +4,20 @@ import org.openqa.selenium.By;
 
 import qa.free.tools.selenium.toolkit.core.page.object.PageObject;
 
-public abstract class SearchResults<T extends PageObject<T>> extends PageObject<SearchResults<T>> {
+public abstract class SearchResults<T extends SearchResults<T>> extends PageObject<T>  {
 
+	public abstract int getNumberTotalOfFlights();
+	
 	@Override
-	public SearchResults<T> goTo() {
+	public T goTo() {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public SearchResults<T> isPageLoaded() {
-		isPageLoaded(By.xpath(""));
-		return this;
+	public T isPageLoaded() {
+		isPageLoaded(By.xpath("//section[contains(@class,'breadcrumb-area')]"));
+		return (T) this;
 	}
-
+	
 }

@@ -4,6 +4,7 @@ import org.testng.ITestContext;
 
 import qa.free.tools.selenium.synchronization.Synchronize;
 import qa.free.tools.selenium.toolkit.enums.TestNgParameters;
+import qa.free.tools.selenium.toolkit.interactions.Get;
 import qa.free.tools.selenium.toolkit.interactions.Perform;
 import qa.free.tools.selenium.toolkit.interactions.Set;
 import qa.free.tools.selenium.toolkit.interactions.browser.Navigate;
@@ -41,6 +42,14 @@ public abstract class FrameworkCore extends SeleniumCore {
 			}
 			FrameworkCore.testName.remove();
 			SeleniumCore.removeSelenium();
+		}
+		
+		/**
+		 * Get an attribute, text, or value from an element
+		 * @return {@link Get}
+		 */
+		public Get get() {
+			return new Get();
 		}
 		
 		/**

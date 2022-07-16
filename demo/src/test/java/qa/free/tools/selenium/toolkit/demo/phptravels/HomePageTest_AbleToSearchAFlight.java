@@ -1,5 +1,7 @@
 package qa.free.tools.selenium.toolkit.demo.phptravels;
 
+import static org.testng.Assert.assertTrue;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -33,6 +35,10 @@ public class HomePageTest_AbleToSearchAFlight extends BaseTest {
 				.goTo()
 				.searchPanel(SearchType.FLIGHT)
 				.setSearchCriterias(customer);
+			assertTrue(PhpTravels
+				.searchResults(SearchType.FLIGHT)
+				.isPageLoaded()
+				.getNumberTotalOfFlights() >= 0);
 	}
 	
 }
