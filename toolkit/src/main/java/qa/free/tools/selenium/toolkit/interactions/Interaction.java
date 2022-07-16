@@ -108,6 +108,7 @@ public abstract class Interaction<T> extends SeleniumCore {
 		}
 		
 		public Interaction<T> and() {
+			this.andCalled = true;
 			return currentInstance;
 		}
 		

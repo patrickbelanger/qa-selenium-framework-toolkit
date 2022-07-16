@@ -22,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -36,7 +37,7 @@ import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJava
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
-public class Set<T extends Set<T>> extends Interaction<T> {
+public class Set<T extends Set<T>> extends Interaction<Set<T>> {
 
 	@Getter(AccessLevel.PROTECTED)
 	@Setter(AccessLevel.PROTECTED)
@@ -46,11 +47,22 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	private After after;
 	private String text;
 	private ElementsGroup radio;
-	private SendKeys sendKeys;
+	private SendKeys sendKeys;	
 	
-	public Set() {
-		setBefore(new Before(this));
-		setAfter(new After(this));
+	@Override
+	public Before before() {
+		if (getBefore() == null) {
+			setBefore(new Before(this));
+		}
+		return getBefore();
+	}
+	
+	@Override
+	public After after() {
+		if (getAfter() == null) {
+			setAfter(new After(this));
+		}
+		return getAfter();
 	}
 	
 	public Date date() {
@@ -73,6 +85,12 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	
 	@Override
 	public void execute() {
+		if (getAfter() != null && !getAfter().isAndCalled()) {
+			throw new MissingClosingMethodInBuilderException("after() builder must be closed using the and() method");
+		}
+		if (getBefore() != null && !getBefore().isAndCalled()) {
+			throw new MissingClosingMethodInBuilderException("before() builder must be closed using the and() method");
+		}
 		super.execute();
 		setDate();
 		setRadio();
@@ -81,7 +99,7 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 	}
 	
 	private void clickMatchingTextElementList() {
-		if (getAfter().isClickMatchingTextElement()) {
+		if (getAfter() != null && getAfter().isClickMatchingTextElement()) {
 			new PredicateHelper().clickMatchingTextElement(getAfter().getListElements(), text);
 		}
 	}
@@ -91,8 +109,7 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 			if (text == null) {
 				throw new TextOrValueNotSpecifiedException("No text/value specified");
 			}
-			sendKeys.sendKeys(getBy(), text, getAfter().isAddKey(), getAfter().getKey(), 
-					getBefore().isClearInput());
+			sendKeys.sendKeys(getBy(), text, isAddKey(), getKey(), isClearInput());
 		}
 	}
 	
@@ -117,6 +134,18 @@ public class Set<T extends Set<T>> extends Interaction<T> {
 			}
 			radio.set(getBy(), text);
 		}
+	}
+
+	private boolean isAddKey() {
+		return getAfter() != null && getAfter().isAddKey();
+	}
+	
+	private boolean isClearInput() {
+		return getBefore() != null && getBefore().isClearInput();
+	}
+	
+	public Keys getKey() {
+		return getAfter() != null ? getAfter().getKey() : Keys.NULL;
 	}
 	
 	public class Date extends Interaction<T> {

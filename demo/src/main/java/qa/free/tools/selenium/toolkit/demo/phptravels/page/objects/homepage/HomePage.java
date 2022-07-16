@@ -18,7 +18,7 @@ public class HomePage extends PageObject<HomePage> {
 
 	@Override
 	public HomePage isPageLoaded() {
-		isPageLoaded(By.id("select2-hotels_city-container"));
+		isPageLoaded(By.xpath("//div[@class='section-tab fade-in glass']"));
 		return this;
 	}
 
