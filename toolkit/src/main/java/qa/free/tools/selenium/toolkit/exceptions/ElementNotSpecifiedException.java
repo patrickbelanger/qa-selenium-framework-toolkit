@@ -1,5 +1,8 @@
 package qa.free.tools.selenium.toolkit.exceptions;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class ElementNotSpecifiedException extends RuntimeException {
 
 	private static final long serialVersionUID = 4208263002895288006L;

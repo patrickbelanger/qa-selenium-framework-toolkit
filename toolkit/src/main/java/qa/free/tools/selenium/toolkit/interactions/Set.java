@@ -37,6 +37,9 @@ import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJava
 import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class Set<T extends Set<T>> extends Interaction<Set<T>> {
 
 	@Getter(AccessLevel.PROTECTED)

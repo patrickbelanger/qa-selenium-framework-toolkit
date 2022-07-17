@@ -17,6 +17,9 @@
 
 package qa.free.tools.selenium.toolkit.interactions.events.click;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

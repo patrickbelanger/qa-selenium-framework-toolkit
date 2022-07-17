@@ -10,6 +10,9 @@ import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetText;
 import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetTextJavascript;
 import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetTextSelenium;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class Get {
 
 	@Getter(AccessLevel.PRIVATE)

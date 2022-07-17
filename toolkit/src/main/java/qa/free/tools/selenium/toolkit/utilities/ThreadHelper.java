@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import qa.free.tools.selenium.toolkit.core.page.object.PageObject;
 import qa.free.tools.selenium.toolkit.exceptions.ElementNotSpecifiedException;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class ThreadHelper {
 
 	private ThreadHelper() { }

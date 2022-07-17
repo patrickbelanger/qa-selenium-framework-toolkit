@@ -9,6 +9,9 @@ import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 import qa.free.tools.selenium.toolkit.interactions.events.click.ClickSelenium;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class ElementsGroup extends SeleniumCore {
 
 	public void set(By by, String value) {

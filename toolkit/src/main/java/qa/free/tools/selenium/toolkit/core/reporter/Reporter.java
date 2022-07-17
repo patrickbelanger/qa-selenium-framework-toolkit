@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import qa.free.tools.selenium.toolkit.core.reporter.events.Event;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class Reporter {
 	
 	@Getter

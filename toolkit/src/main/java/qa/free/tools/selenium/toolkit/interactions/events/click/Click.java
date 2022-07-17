@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class Click extends SeleniumCore {
 
 	public abstract void click(By by);

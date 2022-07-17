@@ -11,6 +11,9 @@ import qa.free.tools.selenium.toolkit.exceptions.ExpectedPageNotLoadedException;
 import qa.free.tools.selenium.toolkit.utilities.FindElementHelper;
 import qa.free.tools.selenium.toolkit.utilities.ThreadHelper;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class PageObject<T> extends FrameworkCore {
 	
 	private static final int PAGE_OBJECT_THREAD_LEVEL = 4;

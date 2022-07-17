@@ -12,6 +12,9 @@ import qa.free.tools.selenium.toolkit.utilities.TestNgXml;
 import qa.free.tools.selenium.webdriver.base.Driver;
 import qa.free.tools.selenium.webdriver.factory.WebDriverFactory;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class FrameworkCore extends SeleniumCore {
 
 		private static ThreadLocal<String> testName = new ThreadLocal<>();

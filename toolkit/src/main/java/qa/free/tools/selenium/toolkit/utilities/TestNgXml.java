@@ -22,6 +22,9 @@ import org.testng.Reporter;
 import qa.free.tools.selenium.toolkit.enums.TestNgParameters;
 import qa.free.tools.selenium.toolkit.exceptions.MissingTestNgParameterException;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class TestNgXml {
 	
 	private TestNgXml() { }

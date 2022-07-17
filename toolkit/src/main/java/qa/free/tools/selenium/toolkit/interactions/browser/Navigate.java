@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import qa.free.tools.selenium.toolkit.core.base.FrameworkCore;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class Navigate extends FrameworkCore {
 
 	@Getter(AccessLevel.PRIVATE)

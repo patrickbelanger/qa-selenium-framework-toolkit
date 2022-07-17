@@ -1,5 +1,8 @@
 package qa.free.tools.selenium.toolkit.core.reporter.events;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 import java.sql.Timestamp;
 
 import lombok.Builder;

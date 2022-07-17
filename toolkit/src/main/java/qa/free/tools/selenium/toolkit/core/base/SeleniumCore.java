@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import qa.free.tools.selenium.synchronization.Synchronize;
 import qa.free.tools.selenium.toolkit.core.reporter.Reporter;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public abstract class SeleniumCore {
 
 	private static ThreadLocal<Reporter> reporter = new ThreadLocal<>();

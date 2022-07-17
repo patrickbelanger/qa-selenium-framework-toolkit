@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import qa.free.tools.selenium.toolkit.annotations.FindElement;
 import qa.free.tools.selenium.toolkit.enums.Locator;
 
+/**
+ * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
+ */
 public class FindElementHelper {
 
 	private FindElementHelper() { }
