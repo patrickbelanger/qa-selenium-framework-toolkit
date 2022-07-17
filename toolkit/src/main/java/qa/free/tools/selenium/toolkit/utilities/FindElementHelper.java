@@ -21,6 +21,8 @@ public class FindElementHelper {
 			return By.className(String.format(element, (Object[]) args));
 		} else if (locator.equals(Locator.CSS_SELECTOR)) {
 			return By.cssSelector(String.format(element, (Object[]) args));
+		} else if (locator.equals(Locator.ID)) {
+			return By.id(String.format(element, (Object[]) args));
 		} else if (locator.equals(Locator.LINK_TEXT)) {
 			return By.linkText(String.format(element, (Object[]) args));
 		} else if (locator.equals(Locator.NAME)) {

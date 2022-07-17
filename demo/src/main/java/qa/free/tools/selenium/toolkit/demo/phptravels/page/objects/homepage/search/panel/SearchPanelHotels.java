@@ -2,7 +2,9 @@ package qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.homepage.sea
 
 import org.openqa.selenium.By;
 
+import qa.free.tools.selenium.toolkit.annotations.FindElement;
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
+import qa.free.tools.selenium.toolkit.enums.Locator;
 
 public class SearchPanelHotels extends SearchPanel<SearchPanelHotels> {
 	
@@ -11,9 +13,10 @@ public class SearchPanelHotels extends SearchPanel<SearchPanelHotels> {
 		return null;
 	}
 
+	@FindElement(locator = Locator.ID, element = "select2-hotels_city-container")
 	@Override
 	public SearchPanelHotels isPageLoaded() {
-		isPageLoaded(By.id("select2-hotels_city-container")); // Returns custom exception if page not loaded
+		isPageLoaded(getBy()); // Returns custom exception if page not loaded
 		return this;
 	}
 	
@@ -32,10 +35,11 @@ public class SearchPanelHotels extends SearchPanel<SearchPanelHotels> {
 		return this;
 	}
 
+	@FindElement(locator = Locator.ID, element = "submit")
 	public SearchPanelHotels clickSearch() {
 		perform()
 			.click()
-			.against(By.id("submit"))
+			.against(getBy())
 			.execute();
 		return this;
 	}

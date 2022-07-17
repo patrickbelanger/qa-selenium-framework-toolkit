@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 import org.openqa.selenium.By;
 
+import qa.free.tools.selenium.toolkit.annotations.FindElement;
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
 import qa.free.tools.selenium.toolkit.demo.phptravels.enums.Trip;
+import qa.free.tools.selenium.toolkit.enums.Locator;
 
 public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 	
@@ -14,9 +16,10 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		return null;
 	}
 
+	@FindElement(locator = Locator.ID, element = "select2-hotels_city-container")
 	@Override
 	public SearchPanelFlights isPageLoaded() {
-		isPageLoaded(By.id("select2-hotels_city-container")); // Returns custom exception if page not loaded
+		isPageLoaded(getBy()); // Returns custom exception if page not loaded
 		return this;
 	}
 	
@@ -44,22 +47,25 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		return this;
 	}
 	
+	@FindElement(locator = Locator.NAME, element = "trip")
 	public SearchPanelFlights setTrip(Trip trip) {
 		set()
 			.radio(trip.toString())
-		.against(By.name("trip"))
+		.against(getBy())
 		.execute();
 		return this;
 	}
 	
+	@FindElement(locator = Locator.ID, element = "flights-search")
 	public SearchPanelFlights clickSearch() {
 		perform()
 			.click()
-			.against(By.id("flights-search"))
+			.against(getBy())
 			.execute();
 		return this;
 	}
 
+	@FindElement(locator = Locator.ID, element = "departure")
 	public SearchPanelFlights setDepartureDate(LocalDate departureDate) {
 		set()
 			.date()
@@ -67,7 +73,7 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 				.usingSendKeys()
 				.usingDateFormatter("dd-MM-yyyy")
 				.apply()
-			.against(By.id("departure"))
+			.against(getBy())
 			.before()
 				.clearInput()
 				.and()
@@ -75,6 +81,7 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		return this;
 	}
 	
+	@FindElement(locator = Locator.ID, element = "return")
 	public SearchPanelFlights setReturnDate(LocalDate returnDate) {
 		set()
 		.date()
@@ -82,7 +89,7 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 			.usingSendKeys()
 			.usingDateFormatter("dd-MM-yyyy")
 			.apply()
-		.against(By.id("return"))
+		.against(getBy())
 		.before()
 			.clearInput()
 			.and()
