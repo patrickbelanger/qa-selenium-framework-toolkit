@@ -15,7 +15,8 @@ import qa.free.tools.selenium.toolkit.enums.Locator;
 public @interface FindElement {
 	
 	Locator locator() default Locator.XPATH;
-	String element();
+	Locator[] locators() default {};
+	String element() default "";
 	String[] elements() default {};
 	
 }
