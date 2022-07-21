@@ -1,7 +1,5 @@
 package qa.free.tools.selenium.toolkit.demo.phptravels.page.objects.homepage.search.panel;
 
-import org.openqa.selenium.By;
-
 import qa.free.tools.selenium.toolkit.annotations.FindElement;
 import qa.free.tools.selenium.toolkit.demo.phptravels.data.model.Customer;
 import qa.free.tools.selenium.toolkit.enums.Locator;
@@ -20,16 +18,28 @@ public class SearchPanelHotels extends SearchPanel<SearchPanelHotels> {
 		return this;
 	}
 	
+	@FindElement(
+			locators = {
+					Locator.XPATH,
+					Locator.ID,
+					Locator.ID
+			},
+			elements = {
+					"//input[@class='select2-search__field']",
+					"select2-hotels_city-container",
+					"select2-hotels_city-results"
+			}
+	)
 	public SearchPanelHotels setCityName(String cityName) {
 		set()
 			.text(cityName)
-			.against(By.xpath("//input[@class='select2-search__field']"))
+			.against(getBy(0))
 			.before()
-				.triggerElementUpdateAgainst(By.id("select2-hotels_city-container"), "input")
+				.triggerElementUpdateAgainst(getBy(1), "input")
 				.and()
 			.after()
 				.pressEnter()
-				.clickMatchingTextElement(By.id("select2-hotels_city-results"))
+				.clickMatchingTextElement(getBy(2))
 				.and()
 			.execute();
 		return this;
