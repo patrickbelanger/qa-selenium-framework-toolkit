@@ -23,27 +23,43 @@ public class SearchPanelFlights extends SearchPanel<SearchPanelFlights> {
 		return this;
 	}
 	
+	@FindElement(
+			locators = {
+					Locator.NAME,
+					Locator.CLASS_NAME
+			}, 
+			elements = {
+					"from",
+					"autocomplete-result"
+			}
+	)
 	public SearchPanelFlights setFlightFrom(String cityName) {
-		set()
-			.text(cityName)
-			.against(By.name("from"))
-			.after()
-				.pressEnter()
-				.clickMatchingTextElement(By.className("autocomplete-result"))
-				.and()
-			.execute();
-		return this;
+		return setDestination(cityName, getBy(0), getBy(1));
 	}
 
+	@FindElement(
+			locators = {
+					Locator.NAME,
+					Locator.CLASS_NAME
+			}, 
+			elements = {
+					"to",
+					"autocomplete-result"
+			}
+	)
 	public SearchPanelFlights setToDestination(String cityName) {
+		return setDestination(cityName, getBy(0), getBy(1));
+	}
+	
+	private SearchPanelFlights setDestination(String textToMatch, By against, By clickMatchingElement) {
 		set()
-			.text(cityName)
-			.against(By.name("to"))
-			.after()
-				.pressEnter()
-				.clickMatchingTextElement(By.className("autocomplete-result"))
-				.and()
-			.execute();
+  		.text(textToMatch)
+  		.against(against)
+  		.after()
+  			.pressEnter()
+  			.clickMatchingTextElement(clickMatchingElement)
+  		.and()
+  		.execute();
 		return this;
 	}
 	

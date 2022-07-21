@@ -14,7 +14,8 @@ public class FindElementHelper {
 	
 	public static By getElementFromAnnotation(FindElement targetElement, Integer index, String... args) {
 		if (targetElement.elements().length > 0) {
-			return getElement(targetElement.locator(), targetElement.elements()[index], args);
+			return getElement(targetElement.locators().length > 0 ? 
+					targetElement.locators()[index] : targetElement.locator(), targetElement.elements()[index], args);
 		}
 		return getElement(targetElement.locator(), targetElement.element(), args);
 	}

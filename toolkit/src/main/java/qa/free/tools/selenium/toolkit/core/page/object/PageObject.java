@@ -16,7 +16,7 @@ import qa.free.tools.selenium.toolkit.utilities.ThreadHelper;
  */
 public abstract class PageObject<T> extends FrameworkCore {
 	
-	private static final int PAGE_OBJECT_THREAD_LEVEL = 4;
+	private static final int PAGE_OBJECT_THREAD_LEVEL = 5;
 	public abstract T goTo();
 	public abstract T isPageLoaded();
 	
