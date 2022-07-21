@@ -13,24 +13,24 @@ public class ThreadHelper {
 	private ThreadHelper() { }
 	
 	@SuppressWarnings("rawtypes")
-	public static Method findMethodWithAnnotation(PageObject<?> clazz, Class annotation, int level) {
-		Method method = getMatchingMethod(clazz.getClass().getMethods(), annotation, level);
-		if (method == null) {
-			method = getMatchingMethod(clazz.getClass().getMethods(), annotation, level - 1);
-		}
+	public static Method findMethodWithAnnotation(PageObject<?> clazz, Class annotation) {
+		Method method = getMatchingMethod(clazz.getClass().getMethods(), annotation);
 		if (method != null) {
 			return method;
 		}
-		throw new ElementNotSpecifiedException("Element not specified or page object method must be public");
+		throw new ElementNotSpecifiedException("Element(s) not specified using @FindElement annotation. Make sure page object is public");
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	private static Method getMatchingMethod(Method[] methods, Class annotation, int level) {
-		for (Method method : methods) {
-			if (method.isAnnotationPresent(annotation) &&
-					method.getName().equals(getCallerMethodName(level))) {
-				return method;
-			}
+	private static Method getMatchingMethod(Method[] methods, Class annotation) {
+		for (int i = 0; i <= 5; i++) { // We perform a maximum of  5 attempts to find the method 
+																	 // with the specified annotation
+  		for (Method method : methods) {
+  			if (method.isAnnotationPresent(annotation) && // For some reason, this not work using streams (to investigate)
+  					method.getName().equals(getCallerMethodName(i))) {
+  				return method;
+  			}
+  		}
 		}
 		return null;
 	}
