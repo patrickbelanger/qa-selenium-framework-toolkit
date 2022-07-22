@@ -13,7 +13,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
-		<junit.version>5.8.2</junit.version>
+		<testng.version>7.6.0</testng.version>
 	</properties>
 
 	<artifactId>qa-selenium-framework-toolkit</artifactId>
@@ -27,16 +27,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
 		</dependency>
 	</dependencies>
 
