@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite" parallel="methods" thread-count="5">
+	<test name="Framework toolkit integration test suite">
+ 		
+ 		<parameter name="webDriver" value="CHROME" />
+ 		<parameter name="gridThirdParty" value="" /> <!-- Blank on purpose -->
+ 		<parameter name="remote" value="false" />
+ 		
+		<packages>
+	    </packages>
+	</test> 
+</suite> 
