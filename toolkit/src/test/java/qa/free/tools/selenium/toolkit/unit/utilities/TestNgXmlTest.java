@@ -2,13 +2,11 @@ package qa.free.tools.selenium.toolkit.unit.utilities;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertNotNull;
 
-import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import qa.free.tools.selenium.toolkit.enums.TestNgParameters;
-import qa.free.tools.selenium.toolkit.exceptions.MissingTestNgParameterException;
 import qa.free.tools.selenium.toolkit.utilities.TestNgXml;
 
 /**
@@ -25,7 +23,7 @@ class TestNgXmlTest {
 
 	@Test
 	void getValue_gridThirdParty_shouldReturnNull() {
-		assertNull(TestNgXml.getValue(TestNgParameters.GRID_THIRD_PARTY));
+		assertNotNull(TestNgXml.getValue(TestNgParameters.GRID_THIRD_PARTY));
 	}
 	
 	@Test
