@@ -18,7 +18,6 @@
 package qa.free.tools.selenium.toolkit.interactions.events.get.text;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
 
@@ -27,14 +26,5 @@ public abstract class GetText extends SeleniumCore {
 	public abstract String getAttribute(By by, String attributeName);
 	public abstract String getText(By by);
 	public abstract String getValue(By by);
-	
-	
-	public boolean isInput(WebElement webElement) {
-		return webElement.getTagName().equals("input");
-	}
-	
-	public boolean isTextArea(WebElement webElement) {
-		return webElement.getTagName().equals("textarea");
-	}
 	
 }

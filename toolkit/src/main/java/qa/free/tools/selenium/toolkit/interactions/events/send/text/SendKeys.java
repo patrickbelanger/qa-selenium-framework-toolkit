@@ -31,17 +31,4 @@ public abstract class SendKeys extends SeleniumCore {
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend);
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key);
 	
-	
-	public boolean isEditable(By by) {
-		return true;
-	}
-	
-	public boolean isInput(WebElement webElement) {
-		return webElement.getTagName().equals("input");
-	}
-	
-	public boolean isTextArea(WebElement webElement) {
-		return webElement.getTagName().equals("textarea");
-	}
-	
 }
