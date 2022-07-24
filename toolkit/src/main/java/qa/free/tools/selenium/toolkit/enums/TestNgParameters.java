@@ -21,16 +21,8 @@ public enum TestNgParameters {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public boolean isRequired() {
 		return required;
-	}
-
-	public void setRequired(boolean required) {
-		this.required = required;
 	}
 	
 }
