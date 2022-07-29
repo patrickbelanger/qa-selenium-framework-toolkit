@@ -1,5 +1,9 @@
 package qa.free.tools.selenium.toolkit.unit.utilities;
 
+import static org.testng.Assert.assertTrue;
+
+import java.lang.reflect.Method;
+
 import org.testng.annotations.Test;
 
 import qa.free.tools.selenium.toolkit.annotations.FindElement;
@@ -11,7 +15,7 @@ class ThreadHelperTest {
 
 	@Test(expectedExceptions = { ElementNotSpecifiedException.class })
 	void findMethodWithAnnotation_shouldTriggerAnExceptionIfFindElementIsNotSpecified() {
-		ThreadHelper.findMethodWithAnnotation(new InvalidPageObject(), FindElement.class);
+		assertTrue(ThreadHelper.findMethodWithAnnotation(new InvalidPageObject(), FindElement.class) instanceof Method);
 	}
 	
 }
