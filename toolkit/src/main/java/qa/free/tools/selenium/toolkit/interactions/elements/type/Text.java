@@ -28,9 +28,9 @@ import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetText;
 import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetTextJavascript;
 import qa.free.tools.selenium.toolkit.interactions.events.get.text.GetTextSelenium;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeys;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJavascript;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
+import qa.free.tools.selenium.toolkit.interactions.events.send.keys.SendKeys;
+import qa.free.tools.selenium.toolkit.interactions.events.send.keys.SendKeysJavascript;
+import qa.free.tools.selenium.toolkit.interactions.events.send.keys.SendKeysSelenium;
 
 /**
  * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>

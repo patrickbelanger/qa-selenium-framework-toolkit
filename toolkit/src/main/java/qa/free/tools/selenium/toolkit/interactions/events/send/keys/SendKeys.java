@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.free.tools.selenium.toolkit.interactions.events.send.text;
+package qa.free.tools.selenium.toolkit.interactions.events.send.keys;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import org.openqa.selenium.By;
 
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
+import qa.free.tools.selenium.toolkit.interactions.events.send.keys.SendKeysSelenium;
 
 public class TextBasedDatePicker extends DatePickerElement {
 
