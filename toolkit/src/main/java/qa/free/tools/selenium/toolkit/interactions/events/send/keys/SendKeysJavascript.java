@@ -58,7 +58,8 @@ public class SendKeysJavascript extends SendKeys {
 
 	@Override
 	public void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key) {
-		getJavascriptExecutor().executeScript("arguments[0].value", getWebElement());
+		getJavascriptExecutor().executeScript(
+				String.format("arguments[0].value='%s'",keysToSend), getWebElement());
 		webElement.sendKeys(addKey ? key : "");
 	}
 	

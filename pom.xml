@@ -31,6 +31,9 @@
                         <suiteXmlFile>
                             src\test\resources\testng\unit\unit-tests.xml
                         </suiteXmlFile>
+                        <suiteXmlFile>
+                            src\test\resources\testng\integration\integration-tests.xml
+                        </suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
 			</plugin>
