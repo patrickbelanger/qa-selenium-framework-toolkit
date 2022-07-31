@@ -16,12 +16,12 @@ public abstract class BaseTest extends FrameworkCore {
 	}
 	
 	@BeforeMethod(alwaysRun = true)
-	public void setUp(ITestContext testContext) {
+	public void setUpFramework(ITestContext testContext) {
 		setFrameworkContext(testContext);
 	}
 	
-	@AfterMethod(alwaysRun = false) 
-	public void tearDown() {
+	@AfterMethod(alwaysRun = true) 
+	public void tearDownFramework() {
 		clearFrameworkContext();
 	}
 	

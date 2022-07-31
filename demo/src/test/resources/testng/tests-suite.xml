@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite" parallel="methods" thread-count="1">
+	
 	<test name="Framework toolkit integration test suite">
  		
  		<parameter name="webDriver" value="CHROME" />
- 		<parameter name="gridThirdParty" value="" /> <!-- Blank on purpose -->
  		<parameter name="remote" value="false" />
  		
+ 		<!-- PhptTravels is down
 		<packages>
-			<package name="qa.free.tools.selenium.toolkit.integration.*"/>
-	    </packages>
+	    	<package name="qa.free.tools.selenium.toolkit.demo.phptravels.*"/>
+		</packages>
+		-->
+		
 	</test> 
+
 </suite> 
