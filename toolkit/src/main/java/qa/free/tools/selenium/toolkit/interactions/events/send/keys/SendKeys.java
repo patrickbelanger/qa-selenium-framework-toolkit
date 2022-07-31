@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.free.tools.selenium.toolkit.interactions.events.send.text;
+package qa.free.tools.selenium.toolkit.interactions.events.send.keys;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -30,18 +30,5 @@ public abstract class SendKeys extends SeleniumCore {
 	public abstract void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key, boolean clearInput);
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend);
 	public abstract void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key);
-	
-	
-	public boolean isEditable(By by) {
-		return true;
-	}
-	
-	public boolean isInput(WebElement webElement) {
-		return webElement.getTagName().equals("input");
-	}
-	
-	public boolean isTextArea(WebElement webElement) {
-		return webElement.getTagName().equals("textarea");
-	}
 	
 }

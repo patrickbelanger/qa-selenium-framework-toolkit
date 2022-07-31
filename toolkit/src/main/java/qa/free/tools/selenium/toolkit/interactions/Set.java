@@ -27,14 +27,11 @@ import org.openqa.selenium.Keys;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import qa.free.tools.selenium.toolkit.enums.Using;
 import qa.free.tools.selenium.toolkit.exceptions.MissingClosingMethodInBuilderException;
 import qa.free.tools.selenium.toolkit.exceptions.TextOrValueNotSpecifiedException;
 import qa.free.tools.selenium.toolkit.interactions.elements.group.ElementsGroup;
 import qa.free.tools.selenium.toolkit.interactions.elements.group.RadioButtons;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeys;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysJavascript;
-import qa.free.tools.selenium.toolkit.interactions.events.send.text.SendKeysSelenium;
+import qa.free.tools.selenium.toolkit.interactions.elements.type.Text;
 import qa.free.tools.selenium.toolkit.utilities.PredicateHelper;
 
 /**
@@ -50,7 +47,8 @@ public class Set<T extends Set<T>> extends Interaction<Set<T>> {
 	private After after;
 	private String text;
 	private ElementsGroup radio;
-	private SendKeys sendKeys;	
+	@Getter(AccessLevel.PROTECTED)
+	private Text textClass;	
 	
 	@Override
 	public Before before() {
@@ -81,8 +79,7 @@ public class Set<T extends Set<T>> extends Interaction<Set<T>> {
 	
 	public Set<T> text(String text) {
 		this.text = text;
-		this.sendKeys = getUsing().equals(Using.JAVASCRIPT) ?
-				new SendKeysJavascript() : new SendKeysSelenium();
+		this.textClass = new Text(getUsing());
 		return this;
 	}
 	
@@ -108,11 +105,11 @@ public class Set<T extends Set<T>> extends Interaction<Set<T>> {
 	}
 	
 	private void sendText() {
-		if (sendKeys != null) {
+		if (getTextClass() != null) {
 			if (text == null) {
 				throw new TextOrValueNotSpecifiedException("No text/value specified");
 			}
-			sendKeys.sendKeys(getBy(), text, isAddKey(), getKey(), isClearInput());
+			getTextClass().sendKeys(getBy(), text, isAddKey(), getKey(), isClearInput());
 		}
 	}
 	

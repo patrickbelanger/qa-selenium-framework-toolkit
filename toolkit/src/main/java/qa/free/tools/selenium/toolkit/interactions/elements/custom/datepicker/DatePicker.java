@@ -1,37 +1,19 @@
 package qa.free.tools.selenium.toolkit.interactions.elements.custom.datepicker;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.function.Predicate;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import qa.free.tools.selenium.synchronization.SynchronizationMethods;
-import qa.free.tools.selenium.toolkit.core.base.SeleniumCore;
+import qa.free.tools.selenium.toolkit.interactions.elements.custom.datepicker.type.DatePickerElement;
 
 /**
  * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
  */
-public abstract class DatePicker extends SeleniumCore {
-	
-	public abstract void setDate(By by, LocalDate localDate);
-	public abstract void setDate(By by, Predicate<? super WebElement> predicate, LocalDate localDate);
-	
-	public String getDate(By by) {
-		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.PRESENCE_OF_ELEMENT_LOCATED, by));
-		return getWebElement().getAttribute("value");
-	}
-	
-	public String getDate(By by, String dateTimePattern) {
-		return getDate(by, dateTimePattern, Locale.US);
-	}
-	
-	public String getDate(By by, String dateTimePattern, Locale locale) {
-		return LocalDateTime.parse(getDate(by), DateTimeFormatter.ofPattern(dateTimePattern, locale)).toString();
-	}
+public class DatePicker<T extends DatePickerElement> extends DatePickerElement {
+
+	private T type;
 	
 	public boolean isTypeCustom(WebElement webElement) {
 		return !isTypeDate(webElement) && 
@@ -44,7 +26,26 @@ public abstract class DatePicker extends SeleniumCore {
 	
 	public boolean isTypeText(WebElement webElement) {
 		return webElement.getAttribute("type").equals("text");
-		
+	}
+	
+	@Override
+	public String getDate(By by) {
+		return type.getDate(by);
+	}
+	
+	@Override
+	public String getDate(By by, String dateTimePattern) {
+		return type.getDate(by, dateTimePattern);
+	}
+	
+	@Override
+	public String getDate(By by, String dateTimePattern, Locale locale) {
+		return type.getDate(by, dateTimePattern, locale);
+	}
+
+	@Override
+	public void setDate(By by, LocalDate localDate) {
+		 type.setDate(by, localDate);
 	}
 	
 }

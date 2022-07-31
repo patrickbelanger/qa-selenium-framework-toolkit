@@ -15,37 +15,40 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.free.tools.selenium.toolkit.interactions.events.send.text;
+package qa.free.tools.selenium.toolkit.interactions.events.send.keys;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import lombok.Getter;
 import qa.free.tools.selenium.synchronization.SynchronizationMethods;
 
 /**
  * @author pbelanger <1848500+patrickbelanger@users.noreply.github.com>
  */
-public class SendKeysSelenium extends SendKeys {
+public class SendKeysJavascript extends SendKeys {
+	
+	@Getter
+	private JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getWebDriver();
 	
 	@Override
 	public void sendKeys(By by, CharSequence keysToSend) {
 		sendKeys(by, keysToSend, false, Keys.NULL);
 	}
 	
-	@Override
 	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key) {
-		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
-		sendKeys(by, keysToSend, addKey, key, false);
+		sendKeys(by, keysToSend, false, Keys.NULL, false);
 	}
-
+	
 	@Override
 	public void sendKeys(By by, CharSequence keysToSend, boolean addKey, Keys key, boolean clearInput) {
 		setWebElement(getSynchronization().synchronizeWebElement(SynchronizationMethods.VISIBILITY_OF_ELEMENT_LOCATED, by));
 		if (clearInput) {
 			getWebElement().clear();
 		}
-		sendKeys(getWebElement(), keysToSend);
+		sendKeys(getWebElement(), keysToSend, addKey, key);
 	}
 	
 	@Override
@@ -55,7 +58,8 @@ public class SendKeysSelenium extends SendKeys {
 
 	@Override
 	public void sendKeys(WebElement webElement, CharSequence keysToSend, boolean addKey, Keys key) {
-		getWebElement().sendKeys(keysToSend, addKey ? key : "");
+		getJavascriptExecutor().executeScript("arguments[0].value", getWebElement());
+		webElement.sendKeys(addKey ? key : "");
 	}
 	
 }

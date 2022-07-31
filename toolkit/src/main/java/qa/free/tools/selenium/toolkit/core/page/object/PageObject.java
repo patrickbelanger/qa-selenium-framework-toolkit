@@ -16,7 +16,6 @@ import qa.free.tools.selenium.toolkit.utilities.ThreadHelper;
  */
 public abstract class PageObject<T> extends FrameworkCore {
 	
-	private static final int PAGE_OBJECT_THREAD_LEVEL = 5;
 	public abstract T goTo();
 	public abstract T isPageLoaded();
 	
@@ -35,7 +34,7 @@ public abstract class PageObject<T> extends FrameworkCore {
 	}
 	
 	public By getBy(Integer index, String... args) {
-		FindElement targetElement = ThreadHelper.findMethodWithAnnotation(this, FindElement.class, PAGE_OBJECT_THREAD_LEVEL)
+		FindElement targetElement = ThreadHelper.findMethodWithAnnotation(this, FindElement.class)
 				.getAnnotation(FindElement.class);
 		if (targetElement != null) {
 			return FindElementHelper.getElementFromAnnotation(targetElement, index, args);
